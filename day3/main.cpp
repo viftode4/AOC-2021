@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+using namespace std::chrono;
 ifstream fin("in.in");
 string s[10000];
 set<string> a, b, c;
@@ -8,6 +9,7 @@ int n = 1, size, x, y;
 int fr[20];
 
 int main() {
+    auto sstart = chrono::high_resolution_clock::now();
     while (fin >> s[n])
         n++;
     n--;
@@ -68,5 +70,8 @@ int main() {
             y++;
     }
     cout << x * y;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 }

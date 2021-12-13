@@ -1,13 +1,14 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+using namespace std::chrono;
 ifstream fin("in.in");
 int a[5000][5000];
 int x, y, xx, yy;
 char s[1005];
 void print();
 int main() {
-
+    auto sstart = high_resolution_clock::now();
     while (fin.getline(s, 1000)) {
         char *p = strtok(s, " -> ");
         char *q = strtok(NULL, " -> ");
@@ -45,13 +46,15 @@ int main() {
             a[xx][yy]++;
         }
     }
-    print();
     int sol = 0;
     for (int i = 0; i <= 1000; i++)
         for (int j = 0; j <= 1000; j++)
             if (a[i][j] > 1)
                 sol++;
     cout << sol;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 }
 

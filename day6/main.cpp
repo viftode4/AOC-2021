@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using namespace std::chrono;
 ifstream fin("in.in");
 long long a[10], n, x, timer=256;
 long long sol;
@@ -8,7 +9,7 @@ char in[100000];
 void print();
 
 int main() {
-
+    auto sstart = chrono::high_resolution_clock::now();
     fin.getline(in,1000);
     char *p = strtok(in,",");
     while(p)
@@ -35,6 +36,9 @@ int main() {
     for(int i=0;i<=8;i++)
         sol+=a[i];
     cout<<sol;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 }
 

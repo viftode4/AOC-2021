@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+using namespace std::chrono;
 ifstream fin("in.in");
 
 char s[100000], a[100000];
@@ -8,6 +9,7 @@ long long sol = 0;
 char o[] = "[{<(", cl[] = "]}>)";
 vector<long long>v;
 int main() {
+    auto sstart = high_resolution_clock::now();
     while (fin.getline(s, 10000)) {
         int n = -1, ok = 0;
         for (int i = 0; s[i]; i++) {
@@ -49,6 +51,9 @@ int main() {
     }
     sort(v.begin(), v.end());
     cout << v[(v.size())/2];
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 
 }

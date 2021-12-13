@@ -4,6 +4,7 @@
 #define pb push_back
 
 using namespace std;
+using namespace std::chrono;
 
 ifstream fin("in.in");
 
@@ -25,6 +26,7 @@ void dfs(int i, int j)
             dfs(i+di[d],j+dj[d]);
 }
 int main() {
+    auto sstart = high_resolution_clock::now();
     char s[100005];
     char c;
 
@@ -58,6 +60,9 @@ int main() {
     sol.pop_back();
     int z=sol.back();
     cout<<x*y*z;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 }
 int interior(int i, int j)

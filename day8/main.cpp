@@ -4,6 +4,7 @@
 #define pb push_back
 
 using namespace std;
+using namespace std::chrono;
 
 ifstream fin("in.in");
 int sol;
@@ -49,6 +50,7 @@ int bcd[10][10]={
  *            4
  */
 int main() {
+    auto sstart = high_resolution_clock::now();
     char s[100005],*p,*c, *d;
     char f[10];
 
@@ -145,6 +147,9 @@ int main() {
         sol+=x;
     }
     cout<<sol;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 }
 

@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using namespace std::chrono;
 ifstream fin("in.in");
 char s[100000], *p;
 int a[100000], n, maxh;
@@ -9,7 +10,7 @@ int cost(int h);
 bool ok(int mid);
 
 int main() {
-
+    auto sstart = high_resolution_clock::now();
     fin.getline(s,100000);
     p=strtok(s,",");
     while(p)
@@ -20,6 +21,9 @@ int main() {
     }
     int sol=cautbin();
     cout<<cost(sol);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 }
 

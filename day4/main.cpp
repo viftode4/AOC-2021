@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+using namespace std::chrono;
 
 ifstream fin("in.in");
 vector<int> v;
@@ -12,12 +13,13 @@ char s[100000], *p;
 void bingo(int x);
 int verif(int i, int j, int k);
 int main() {
+    auto sstart = chrono::high_resolution_clock::now();
     fin.getline(s, 10000);
     p = strtok(s, ",");
     while (p) {
         numbers[++n] = stoi(p, nullptr);
         p = strtok(NULL, ",");
-        cout << numbers[n] << ' ';
+        //cout << numbers[n] << ' ';
     }
     while (fin >> x) {
         a[++m][1][1] = x;
@@ -27,19 +29,14 @@ int main() {
                     fin >> a[m][i][j];
     }
     cout<<endl;
-    for (int i = 1; i <= m; i++) {
-        for (int j = 1; j <= 5; j++) {
-            for (int k = 1; k <= 5; k++)
-                cout<<a[i][j][k]<<' ';
-            cout<<'\n';
-        }
-        cout<<'\n';
-    }
     for(int i=1;i<=n;i++) {
         //cout<<numbers[i]<<' ';
         bingo(numbers[i]);
     }
     cout<<v.back();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 }
 void bingo (int x){

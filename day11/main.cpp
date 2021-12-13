@@ -5,6 +5,7 @@
 #define nd second
 #define pb push_back
 using namespace std;
+using namespace std::chrono;
 ifstream fin("in.in");
 
 char s[100000];
@@ -19,7 +20,6 @@ int interior(int i, int j) {
         return 0;
     return 1;
 }
-
 void print() {
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++)
@@ -37,6 +37,7 @@ int ok()
             return 0;
 }
 int main() {
+    auto sstart = high_resolution_clock::now();
     n = 1;
     while (fin.getline(s, 10000)) {
         for (int i = 0; s[i]; i++) {
@@ -72,8 +73,10 @@ int main() {
                 }
         }
     }
-    print();
     cout << t;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop-sstart);
+    cout<<"time:"<<duration.count();
     return 0;
 
 }

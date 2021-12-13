@@ -5,6 +5,7 @@
 #define nd second
 #define pb push_back
 using namespace std;
+using namespace std::chrono;
 ifstream fin("in.in");
 
 char s[100000];
@@ -18,38 +19,12 @@ queue<pair<int, int>> q;
 int di[] = {0, 1, 0, -1, 1, 1, -1, -1};
 int dj[] = {1, 0, -1, 0, 1, -1, 1, -1};
 int start, xend;
-vector<string> res;
-vector<string> ssol;
 void dfs(int i);
-////
-////int interior(int i, int j) {
-////    if (i < 1 || i > n || j < 1 || j > n)
-////        return 0;
-////    return 1;
-////}
-//
-//void print() {
-//    for (int i = 1; i <= n; i++) {
-//        for (int j = 1; j <= n; j++)
-//            cout << a[i][j];
-//        cout << endl;
-//    }
-//}
-//
-//int ok() {
-//    for (int i = 1; i <= n; i++)
-//        for (int j = 1; j <= n; j++)
-//            if (a[i][j] != 0)
-//                return 1;
-//
-//    return 0;
-//}
-
 bool isOk(string h);
-
 int main() {
     n = 1;
     int k = 0;
+    auto sstart = high_resolution_clock::now();
     while (fin.getline(s, 10000)) {
         char *p = strtok(s, "-");
         string a = p;
@@ -74,27 +49,17 @@ int main() {
     xend = m["end"];
     dfs(start);
     //print();
-    cout<<ssol.size();
-    sort(ssol.begin(),ssol.end());
-    ssol.erase( unique( ssol.begin(),  ssol.end() ),  ssol.end() );
-
+    cout<<sol;
     return 0;
 
 }
 
 void dfs(int i) {
-    res.pb(rm[i]);
     string aaaa = rm[i];
     if (!r[i])
         viz[i] = 1;
     if (i == xend) {
         sol++;
-        string k="";
-        for(auto it:res)
-            k += it + " ";
-
-        ssol.pb(k);
-        res.pop_back();
         viz[i] = 0;
         return;
     }
@@ -110,7 +75,6 @@ void dfs(int i) {
             }
             else dfs(it);
         }
-    res.pop_back();
     viz[i] = 0;
 }
 
