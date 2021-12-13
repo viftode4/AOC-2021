@@ -1,4 +1,4 @@
-#TIMINGS
+# TIMINGS
 
 **DAY 13** - ```13 ms```  
 **DAY 12** - ```92 ms```  
